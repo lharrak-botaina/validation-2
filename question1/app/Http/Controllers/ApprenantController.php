@@ -49,11 +49,7 @@ class ApprenantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -70,10 +66,14 @@ class ApprenantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Apprenant::where('status','refuser')->delete();
+        return response('deleted');
     }
+
+
+
     public function check(Request $request ,$email){
         $filer = Apprenant::where('email','like','%'.$email.'%')
         ->get();
@@ -93,4 +93,16 @@ class ApprenantController extends Controller
         $apprenants=Apprenant::get('idee');
         return $apprenants;
     }
+    public function AcceptIdee(Request $request,$id){
+        Apprenant::where('id',$id)->update(['status'=>$request->status]);
+    }
+    public function ideeAccepter(){
+       $accpter= Apprenant::where('status','accepter')->get();
+       return $accpter;
+    }
+    public function count(){
+       $count= Apprenant::where('status','accepter')->get()->count();
+        return $count;
+    }
+
 }

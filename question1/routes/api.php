@@ -25,4 +25,8 @@ Route::post('apprenant/store',[ApprenantController::class,'store']);
  Route::get('apprenant/{id}',[ApprenantController::class,'show']);
  Route::put('apprenant/update/{id}',[ApprenantController::class,'update']);
  Route::get('idee',[ApprenantController::class,'idee']);
+ Route::put('apprenant/accept/{id}',[ApprenantController::class,'AcceptIdee']);
+ Route::get('accepter',[ApprenantController::class,'ideeAccepter']);
+ Route::get('count',[ApprenantController::class,'count']);
+ Route::delete('delete',[ApprenantController::class,'destroy']);
 
